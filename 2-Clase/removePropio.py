@@ -1,3 +1,7 @@
+"""
+
+VERSION 1
+
 def removePropio(lista,elemento):
     # Crear una nueva lista el cual vamos a almacenar todos los elementos menos el que vamos a borrar
     nuevoArr=[]
@@ -24,3 +28,16 @@ removePropio(lista,8)
 print(lista)
     
 
+"""
+
+# Version 2
+
+def removePropio(lista,elemento):
+    for i in range(len(lista)):
+        if lista[i]== elemento:
+            del lista[i]
+            break
+
+lista = ["hola","como","estas"]
+removePropio(lista,"como")
+print(lista)
