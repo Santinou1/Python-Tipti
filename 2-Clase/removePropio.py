@@ -34,10 +34,10 @@ print(lista)
 
 def removePropio(lista,elemento):
     for i in range(len(lista)):
-        if lista[i]== elemento:
+        if [i]== elemento:
             del lista[i]
             break
 
-lista = ["hola","como","estas"]
-removePropio(lista,"como")
+lista = [1,2,3,4,5]
+removePropio(lista,3)
 print(lista)
