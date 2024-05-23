@@ -3,26 +3,22 @@
 
 
 print(empleados)  # Salida esperada: ["Juan", "María", "Luis", "Ana", "Pedro"]
-```
 
 ### 2. `extend()`
 **Ejercicio:** Tienes dos listas de proyectos realizados por diferentes equipos. Necesitas combinar estas listas en una sola lista de todos los proyectos realizados.
 
 print(proyectos_equipo1)  # Salida esperada: ["Proyecto A", "Proyecto B", "Proyecto C", "Proyecto D"]
-```
 
 ### 3. `insert()`
 **Ejercicio:** Tienes una lista de tareas pendientes y necesitas agregar una tarea urgente al principio de la lista.
 
 print(tareas)  # Salida esperada: ["Tarea Urgente", "Tarea 1", "Tarea 2", "Tarea 3"]
-```
 
 ### 4. `remove()`
 **Ejercicio:** Tienes una lista de productos en el inventario y necesitas eliminar un producto que se ha vendido. Elimina el producto "Producto B" de la lista.
 
 
 print(inventario)  # Salida esperada: ["Producto A", "Producto C", "Producto D"]
-```
 
 ### 5. `pop()`
 **Ejercicio:** Tienes una lista de clientes esperando en la fila para ser atendidos. Atiende (elimina y retorna) al último cliente de la fila.
@@ -30,7 +26,6 @@ print(inventario)  # Salida esperada: ["Producto A", "Producto C", "Producto D"]
 
 print(ultimo_cliente)  # Salida esperada: "Cliente 3"
 print(clientes)  # Salida esperada: ["Cliente 1", "Cliente 2"]
-```
 
 ### 6. `index()`
 **Ejercicio:** Tienes una lista de números de pedido y necesitas encontrar la posición del pedido número 1024 en la lista.
@@ -40,32 +35,31 @@ print(clientes)  # Salida esperada: ["Cliente 1", "Cliente 2"]
 indice_pedido = pedidos.index(1024)
 
 print(indice_pedido)  # Salida esperada: 2
-```
 
 ### 7. `sort()`
 **Ejercicio:** Tienes una lista de puntuaciones de exámenes y necesitas ordenarlas en orden ascendente.
 
 
 print(puntuaciones)  # Salida esperada: [75, 85, 88, 91, 92]
-```
 
 ### 8. `reverse()`
 **Ejercicio:** Tienes una lista de eventos en orden cronológico y necesitas invertir el orden para mostrarlos en orden inverso.
 
 
 print(eventos)  # Salida esperada: ["Evento 3", "Evento 2", "Evento 1"]
-```
 
 ### 9. `count()`
 **Ejercicio:** Tienes una lista de respuestas a una encuesta y necesitas contar cuántas veces aparece la respuesta "Sí".
 
 print(conteo_si)  # Salida esperada: 4
-```
 
 ### 10. `clear()`
 **Ejercicio:** Tienes una lista de datos temporales que ya no son necesarios y necesitas vaciar la lista.
 
 print(datos_temporales)  # Salida esperada: []
-```
 
 Estos ejercicios son un poco más complejos y se acercan más a situaciones reales de trabajo con datos. Puedes ejecutar cada fragmento de código para ver cómo funcionan estos métodos en contextos prácticos.
+
+### 11. "calcularDiaDelAño"
+
+Realizar una función que reciba 3 enteros que reprensentan una fecha (d/m/a) y retornar el día anterior (contemplar que no todos los meses tienen la misma cantidad de días y que hay años bisiestos)
