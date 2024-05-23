@@ -23,7 +23,6 @@ Join()
 
 join es unmetodo de string que se usa para concatenar elementos con un separador especifico.
 
-
 """
 
 lista=["1","3","2","7","8","6","4","8","5"]
