@@ -7,8 +7,6 @@ Script de ejemplo que demustre como utilizar todas las funcionas del paquete "ve
 ● Crear reservas y marcar vehiculos como alquilados.
 ● Guardar las reservas en un archivo excel.
 ● Devolver los vehiculos y mostrar su estado.
-
-
 """
 
 

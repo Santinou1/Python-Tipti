@@ -24,3 +24,4 @@ Leer y escribir datos en archivos CSV o Excel, permitiendo que los usuarios guar
 Módulos y Paquetes [Leccion 6]
 Organizar el código en módulos y paquetes, separando las funcionalidades como scraping, análisis, y reporte en diferentes módulos.
 
+
