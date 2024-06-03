@@ -1,25 +1,23 @@
 import pandas as pd
 import os
-from src.utils.decorators import timeit, logit
 
-@timeit
-@logit
 def load_data(data_path):
-    """Load data from a CSV file."""
-    df = pd.read_csv(data_path)
+    """Load data from a CSV or Excel file."""
+    if data_path.endswith('.csv'):
+        df = pd.read_csv(data_path)
+    elif data_path.endswith('.xlsx'):
+        df = pd.read_excel(data_path)
+    else:
+        raise ValueError("Unsupported file format")
     print("Data loaded successfully")
     return df
 
-@timeit
-@logit
 def clean_data(df):
     """Clean the data."""
-    df['price'] = df['price'].replace('[\$,]', '', regex=True).astype(float)
+    df['price'] = df['price'].replace(r'[\$,]', '', regex=True).astype(float)
     print("Data cleaned successfully")
     return df
 
-@timeit
-@logit
 def analyze_data(df):
     """Perform some basic data analysis."""
     print("Basic Data Analysis:")
@@ -27,11 +25,14 @@ def analyze_data(df):
     print("\nProducts with highest prices:")
     print(df.nlargest(5, 'price'))
 
-@timeit
-@logit
 def save_clean_data(df, output_path):
-    """Save the cleaned data to a CSV file."""
-    df.to_csv(output_path, index=False)
+    """Save the cleaned data to a CSV or Excel file."""
+    if output_path.endswith('.csv'):
+        df.to_csv(output_path, index=False)
+    elif output_path.endswith('.xlsx'):
+        df.to_excel(output_path, index=False)
+    else:
+        raise ValueError("Unsupported file format")
     print(f"Clean data saved to {output_path}")
 
 if __name__ == "__main__":
@@ -43,4 +44,3 @@ if __name__ == "__main__":
     analyze_data(df)
     os.makedirs("../../data/processed", exist_ok=True)
     save_clean_data(df, output_path)
-
