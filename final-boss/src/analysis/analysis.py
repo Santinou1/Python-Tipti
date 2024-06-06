@@ -1,49 +1,55 @@
-import pandas as pd # Importamos la libreria pandas para manejar y analizar datos
-import os # Importamos el modolu OS para interactuar con el sistema operativo.
+import pandas as pd  # Importa pandas para manejo de datos
+import os  # Importa os para manejo del sistema de archivos
+from ..decorators.decorators import timeit, logit  # Importa los decoradores personalizados
 
+@logit  # Añade logging a la función
+@timeit  # Mide el tiempo de ejecución de la función
 def load_data(data_path):
-    """Cargar los datos desde un archivo CSV o excel , en nuestro caso el archivo "products.csv"""
-
-    if data_path.endswith(".csv"):
-        df = pd.read_csv(data_path) # Cargamos los datos del archivo CSV
-    elif data_path.endswith("xlsx"):
-        df = pd.read_excel(data_path) # Cargamos los datos del archivo excel
+    """Carga datos desde un archivo CSV o Excel."""
+    if data_path.endswith('.csv'):
+        df = pd.read_csv(data_path)  # Lee datos desde un archivo CSV
+    elif data_path.endswith('.xlsx'):
+        df = pd.read_excel(data_path)  # Lee datos desde un archivo Excel
     else:
-        raise ValueError("Unsupported file format") # Lanzamos un error si el formato del archivo NO es comaptible
-    print("Data loaded successfully") #Imprimimos un mensaje indicando que los datos se cargaron correctamente
-    return df #Devolvemos el DataFrame con los datos cargados
+        raise ValueError("Unsupported file format")  # Lanza un error si el formato no es compatible
+    print("Data loaded successfully")  # Imprime un mensaje indicando que los datos se cargaron correctamente
+    return df  # Devuelve el DataFrame con los datos cargados
 
+@logit  # Añade logging a la función
+@timeit  # Mide el tiempo de ejecución de la función
 def clean_data(df):
-    """Limpiamos los datos"""
-    df["price"] = df["price"].replace(r"[\$,]", "", regex=True).astype(float) # Limpaimos y convertimos la columna de precios a tipo float
-    print("Data cleaned Successfully")
-    return df # Devolvemos el Data Frame con los datos formateados
+    """Limpia los datos."""
+    df['price'] = df['price'].replace(r'[\$,]', '', regex=True).astype(float)  # Limpia y convierte la columna de precios a tipo float
+    print("Data cleaned successfully")  # Imprime un mensaje indicando que los datos se limpiaron correctamente
+    return df  # Devuelve el DataFrame con los datos limpiados
 
+@logit  # Añade logging a la función
+@timeit  # Mide el tiempo de ejecución de la función
 def analyze_data(df):
-    """Realizamos un analisis basico de datos."""
-    print("Basic Data Analysis:") # Imprimos un encabezado para el analisis de datos.
-    print(df.describe()) # Imprimimos un resumen estadistico de los datos.
-    print("\nProducts with highest prices: ") # Imprimimos un encabezado para los productos con los precios mas altos
-    highestPrices= df.nlargest(5,"price") 
-    print(highestPrices) # Imprimimos los 5 productos con los precios mas altos.
-    return highestPrices
+    """Realiza un análisis básico de los datos."""
+    print("Basic Data Analysis:")  # Imprime un título para la sección de análisis básico
+    print(df.describe())  # Muestra estadísticas descriptivas de los datos
+    print("\nProducts with highest prices:")  # Imprime un título para la sección de productos con precios más altos
+    print(df.nlargest(5, 'price'))  # Muestra los 5 productos con los precios más altos
 
-def save_clean_data(df,outputh_path):
-    """Guardamos los datos limpios en un archivo CSV"""
-    if outputh_path.endswith(".csv"):
-        df.to_csv(outputh_path,index=False) # Guardamos los datos en un archivo CSV.
-    elif outputh_path.endswith(".xlsx"):
-        df.to_excel(outputh_path, index=False) # Guardamos los datos en un archivo Excel.
+@logit  # Añade logging a la función
+@timeit  # Mide el tiempo de ejecución de la función
+def save_clean_data(df, output_path):
+    """Guarda los datos limpios en un archivo CSV o Excel."""
+    if output_path.endswith('.csv'):
+        df.to_csv(output_path, index=False)  # Guarda los datos en un archivo CSV sin índice
+    elif output_path.endswith('.xlsx'):
+        df.to_excel(output_path, index=False)  # Guarda los datos en un archivo Excel sin índice
     else:
-        raise ValueError("Unsupported file format") # Lanzamos un error si el formato del archivo no es compatible
-    print(f"Clean data saved to {outputh_path}")
+        raise ValueError("Unsupported file format")  # Lanza un error si el formato no es compatible
+    print(f"Clean data saved to {output_path}")  # Imprime un mensaje indicando que los datos se guardaron correctamente
 
-if __name__ == "__main__": # Permitimos que el script solo se ejecute en este archivo
-    data_path = "data/raw/products.csv" # Definimos la ruta del archivo de datos SIN procesar.
-    outputh_path = "data/processed/cleaned_products.csv" # Definimos la ruta del archivo de datos procesados
-
-    df = load_data(data_path) # Cargamos los datos de un archivo especifico
-    df = clean_data(df)  # Limpiamos los datos cargados
-    df = analyze_data(df) # Realizamos un analisis basico de la data.
-    os.makedirs("data/processed", exist_ok=True) # Creamos el directorio para los datos procesados si no existe
-    save_clean_data(df,outputh_path) # Guardamos los datos limpios en el archivo especifico
+if __name__ == "__main__":
+    data_path = "data/raw/products.csv"  # Define la ruta del archivo de datos
+    output_path = "data/processed/cleaned_products.csv"  # Define la ruta del archivo de datos limpios
+    
+    df = load_data(data_path)  # Carga los datos
+    df = clean_data(df)  # Limpia los datos
+    analyze_data(df)  # Analiza los datos
+    os.makedirs("/data/processed", exist_ok=True)  # Crea el directorio de salida si no existe
+    save_clean_data(df, output_path)  # Guarda los datos limpios
