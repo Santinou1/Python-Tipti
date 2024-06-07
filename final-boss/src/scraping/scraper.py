@@ -3,7 +3,20 @@ from bs4 import BeautifulSoup # Importamos BeautifulSoup para analizar los docum
 import pandas as pd # Importamos pandas para manejar datos en los DataFrames 
 
 def fetch_page(url):
-    """Obtenemos el contenido de una pagina."""
+
+    """
+    Obtenemos el contenido de una pagina.
+    
+    Args :
+        url (str) : URL de la pagina web a solicitar.
+
+    Returns :
+        str: Contenido HTML de la pagina Web.
+
+    Raises :
+        System exit: Si ocurre un error en la solicitud HTTP.
+    """
+
     response= requests.get(url) # Realizamos una solicitud GET a la URL proporcionada.
     if response.status_code == 200: # Comparamos el status code con el 200 que significa que fue una peticion exitosa
         return response.content # Devolvemos el contenido de la pagina si la solicitud fue exitosa
@@ -11,7 +24,16 @@ def fetch_page(url):
         raise Exception(f"Failed to fetch page: {url}") # Lanzamos una excepcion por si la solicitud falla
 
 def parse_product(product):
-    """Analizamos los detalles de un producto"""
+    """
+    Analizamos los detalles de un producto.
+    
+    Args :
+        product (bs4.element.Tag) : Objeto BeautifulSoup que contiene la informacion del producto.
+
+    Returns :
+        dict: Diccionario con Titulo, Descripcion y precio del producto
+
+    """
     title= product.find("a",class_="title").text.strip() # Encontramos y obtenemos el titulo del producto
     description = product.find("p",class_="description").text.strip() # Encontramos y obtenemos la descripcion del producto
     price = product.find("h4",class_="price").text.strip() # Encontramos y obtenemos el precio del producto
@@ -22,7 +44,15 @@ def parse_product(product):
     }
 
 def scrape(url):
-    """Funcion principal del scraping"""
+    """
+    Metodo principal de scraping con soporte para multiples paginas.
+    
+    Args :
+        url (str) : URL de la pagina web a scraoear.
+
+    Returns :
+        pd.DataFrame : DataFrame de pandas con los datos de los productos
+    """
     page_content = fetch_page(url) # Obtenemos el codigo base de la pagina
     soup = BeautifulSoup(page_content, "html.parser") # Analizamos el contenido de la pagina con Beautiful Soup
     products = soup.find_all("div", class_="thumbnail") # Encontramos todos los elementos div con la clase "thumbnail" que representan productos
