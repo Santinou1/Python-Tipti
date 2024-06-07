@@ -23,6 +23,7 @@ pip install -r .\dep.txt
 
 ## Estructura de las carpetas.
 
+````bash
 final-boss
 |-- data/
 |    |- raw/
@@ -46,6 +47,7 @@ final-boss
 |__ dep.txt
 |__ README.md
 |__ requirements.txt    
+````bash
 
 ## Ejecucion del Scraper.
 
