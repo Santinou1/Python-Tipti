@@ -47,7 +47,7 @@ final-boss
 |__ dep.txt
 |__ README.md
 |__ requirements.txt    
-````bash
+````
 
 ## Ejecucion del Scraper.
 
